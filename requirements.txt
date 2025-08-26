@@ -5,6 +5,5 @@ pandas
 scikit-learn
 statsmodels
 matplotlib
-pmdarima --only-binary :all: --extra-index-url https://pypi.anaconda.org/conda-forge/simple
+pmdarima
 streamlit
-
