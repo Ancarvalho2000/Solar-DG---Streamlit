@@ -1,4 +1,4 @@
-numpy<2
+numpy
 Cython
 scipy
 pandas
@@ -7,3 +7,4 @@ statsmodels
 matplotlib
 pmdarima --only-binary :all: --extra-index-url https://pypi.anaconda.org/conda-forge/simple
 streamlit
+
