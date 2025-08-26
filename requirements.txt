@@ -1,6 +1,9 @@
-streamlit
+numpy<2
 pandas
+scipy
+scikit-learn
 statsmodels
 matplotlib
+Cython
 pmdarima
-scikit-learn
+streamlit
