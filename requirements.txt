@@ -6,3 +6,4 @@ statsmodels
 matplotlib
 Cython
 streamlit
+pmdarima
