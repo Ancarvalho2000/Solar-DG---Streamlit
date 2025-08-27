@@ -1,6 +1,7 @@
-streamlit
-pandas
-statsmodels
-matplotlib
-pmdarima
-scikit-learn
+streamlit==1.49.0
+pandas==2.2.2
+numpy==1.26.4
+statsmodels==0.14.0
+matplotlib==3.8.4
+pmdarima==2.0.4
+scikit-learn==1.4.2
