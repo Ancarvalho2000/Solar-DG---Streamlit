@@ -18,7 +18,7 @@ for tool in ['adf_panel', 'arima_panel', 'plot_panel']:
 
 def adf_test(series, title=''):
     st.write(f'**Augmented Dickey-Fuller Test:** {title}')
-    result = adfuller(series.dropna(), autolag='AIC') # .dropna() handles differenced data
+    result = adfuller(series.dropna(), autolag='AIC')
 
     labels = ['ADF test statistic', 'p-value', '# lags used', '# observations']
     out = pd.Series(result[0:4], index=labels)
@@ -68,7 +68,6 @@ def plot_graph(df):
 
         for col in selected_cols:
             df[col].plot(ax=ax, legend=True)
-        # No empty spaces in x-axis
 
         plt.xticks(tick_locs, rotation=0)
         plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d-%m-%Y'))
@@ -157,12 +156,19 @@ def arima_test(df, col):
 
 uploaded_file = st.sidebar.file_uploader("Upload a file", type="csv")
 
-if uploaded_file is not None:
+
+@st.cache_data
+def load_data(uploaded_file):
     df = pd.read_csv(uploaded_file)
     first_col = df.columns[0]
     df.set_index(first_col, inplace=True)
     df.index = pd.to_datetime(df.index)
+    return df
 
+
+if uploaded_file is not None:
+    df = load_data(uploaded_file)
+    
     st.divider()
 
     # Button ADF Test
@@ -211,7 +217,3 @@ if uploaded_file is not None:
             if 'arima_selected_column' in st.session_state:
                 selected_col = st.session_state['arima_selected_column']
                 arima_test(df, selected_col)
-                # try:
-                #     arima_test(df, df[selected_col], title=selected_col)
-                # except Exception as e:
-                #     st.error(f"Could not perform ARIMA on column '{selected_col}': {e}" )
